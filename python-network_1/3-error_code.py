@@ -1,20 +1,17 @@
 #!/usr/bin/python3
+"""__summary__
+- Write a Python script that takes in a URL,
+- sends a request to the URL
+- displays the body of the response (decoded in utf-8).
 """
-Script that takes in a URL, sends a request to the URL and displays the
-body of the response (decoded in utf-8).
-
-"""
-from sys import argv
-from urllib.request import Request, urlopen
-from urllib.error import HTTPError
 
 
 if __name__ == "__main__":
-    url = argv[1]
-    req = Request(url)
+    import sys
+    from urllib import request, error
 
     try:
-        with urlopen(req) as response:
-            print(response.read().decode("ascii"))
-    except HTTPError as e:
-        print("Error code: {}".format(e.code))
+        with request.urlopen(sys.argv[1]) as resq:
+            print(resq.read().decode('utf-8'))
+    except error.HTTPError as e:
+        print('Error code:', e.code)
